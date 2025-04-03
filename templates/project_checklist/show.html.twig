@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projet : {{ project.name }}{% endblock %}
+
+{% block body %}
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded mt-8">
+    <h1 class="text-2xl font-bold mb-2">{{ project.name }}</h1>
+    <p class="text-gray-600 mb-4">Client : {{ project.client }}</p>
+    
+    <div class="mb-4">
+        {% set total = project.items|length %}
+        {% set completed = project.items|filter(i => i.isChecked)|length %}
+        {% set percent = total > 0 ? (completed / total * 100)|round(0) : 0 %}
+        
+        <p class="font-semibold">Progression : {{ completed }} / {{ total }} ({{ percent }}%)</p>
+        <div class="w-full bg-gray-200 rounded h-4 mt-2">
+            <div class="bg-green-500 h-4 rounded" {{ {'style': 'width:' ~ percent ~ '%'}|raw }}></div>
+        </div>
+    </div>
+
+    <form method="post" action="#">
+        <ul class="space-y-2 mt-6">
+            {% for item in project.items %}
+                <li class="flex items-center justify-between p-2 border rounded">
+                    <span>{{ item.label }}</span>
+                    <input type="checkbox" {% if item.isChecked %}checked{% endif %} disabled class="form-checkbox text-green-500 h-5 w-5">
+                </li>
+            {% else %}
+                <li class="text-gray-500 italic">Aucune tâche pour ce projet.</li>
+            {% endfor %}
+        </ul>
+    </form>
+
+    <div class="mt-6">
+        <a href="{{ path('app_project_checklist') }}" class="text-blue-600 hover:underline">← Retour à la liste des projets</a>
+    </div>
+</div>
+{% endblock %}

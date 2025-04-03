@@ -54,4 +54,12 @@ final class ProjectChecklistController extends AbstractController
         // 4. Rediriger vers un affichage ou la liste
         return $this->redirectToRoute('app_project_checklist');
     }
+
+    #[Route('/project/checklist/{id}', name: 'project_checklist_show')]
+    public function show(ProjectChecklist $project): Response
+    {
+        return $this->render('project_checklist/show.html.twig', [
+            'project' => $project,
+        ]);
+    }
 }
