@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChecklistTemplate{% endblock %}
+
+{% block body %}
+    <h1>ChecklistTemplate</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ checklist_template.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ checklist_template.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ checklist_template.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_checklist_template_index') }}">back to list</a>
+
+    <a href="{{ path('app_checklist_template_edit', {'id': checklist_template.id}) }}">edit</a>
+
+    <a href="{{ path('project_checklist_create_from_template', { id: checklist_template.id }) }}"
+   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Créer un projet à partir de ce modèle
+    </a>
+
+    {{ include('checklist_template/_delete_form.html.twig') }}
+{% endblock %}
