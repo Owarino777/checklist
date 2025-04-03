@@ -19,7 +19,10 @@ Projet Symfony permettant de créer des modèles de checklists, et de les associ
   - ProjectChecklist
   - ProjectChecklistItem
 - Relations Doctrine bien définies
-- Prêt pour les migrations
+- Migration
+- crud
+- Création automatique d’un `ProjectChecklist` depuis un `ChecklistTemplate`
+- Duplication correcte des items (titre, position, is_checked = false)
 
 ## ✅ Tests fonctionnels validés (recettage)
 | **Test**                                   | **Statut** | **Détail**                                                                 |
